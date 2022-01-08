@@ -1,111 +1,59 @@
+<?php
+/**
+ * The header for our theme
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Pretzel_Plate
+ */
+
+?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="no-js no-svg">
-    <head>
-        <meta charset="<?php bloginfo( 'charset' ); ?>"
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+	<?php wp_head(); ?>
+</head>
 
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'pretzel-plate' ); ?></a>
 
-        <style type="text/css">
-            <?php  global $pretzel_plate; echo $pretzel_plate['custom_style_editor']; ?>
-        </style>
-        <?php wp_head(); ?>
-    </head>
-    <body <?php body_class(); ?>>
-        <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<?php
+			the_custom_logo();
+			if ( is_front_page() && is_home() ) :
+				?>
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php
+			else :
+				?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php
+			endif;
+			$pretzel_plate_description = get_bloginfo( 'description', 'display' );
+			if ( $pretzel_plate_description || is_customize_preview() ) :
+				?>
+				<p class="site-description"><?php echo $pretzel_plate_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<?php endif; ?>
+		</div><!-- .site-branding -->
 
-        <!-- Add your site or application content here -->
-        
-<!-- ===================================
-        Start Here
-========================================-->
-
- <?php global $woocommerce; ?>
-<div class="top_header"  >
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="contact-phone">
-                    <p><i class="fa fa-phone"></i> Call : <?php global $pretzel_plate; echo $pretzel_plate['phone_number']; ?></p>
-                </div>
-            </div>
-
-
-             
-
-              
-             <div class="col-md-4">
-                <div class="top-menu">
-                <?php 
-                            wp_nav_menu( array(
-                                'theme_location' => 'top_menu'
-                            ) );
-
-                        ?>
-
-                </div>
-               
-                <div class="cart-menu">
-                    <ul>
-                    <li><a href="<?php echo $woocommerce->cart->get_cart_url(); ?>"><i class="fa fa-shopping-cart"></i> Cart : <?php  echo $woocommerce->cart->get_cart_total();?> </a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-    <div class="button_header" id="navbar_Header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="logo_area">
-                        <a href="<?php bloginfo('home'); ?>"><img src="<?php  echo $pretzel_plate['logo_area'] ['url']; ?>"></a>
-                    </div>
-              
-                      <div id="dl-menu" class="dl-menuwrapper">
-                        <button class="dl-trigger">Open Menu</button>
-                        <ul class="dl-menu">
-                            <?php 
-                            wp_nav_menu( array(
-                                'theme_location' => 'main_menu'
-                            ) );
-
-                        ?>
-                            
-                        </ul>
-                    </div><!-- /dl-menuwrapper -->
-                </div>
-                <div class="col-md-9">
-                    <div class="main_menu">
-
-                        <?php 
-                            wp_nav_menu( array(
-                                'theme_location' => 'main_menu'
-                            ) );
-
-                        ?>
-                        
-                    </div>
-                      
-
-       
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-
-
-
+		<nav id="site-navigation" class="main-navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'pretzel-plate' ); ?></button>
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				)
+			);
+			?>
+		</nav><!-- #site-navigation -->
+	</header><!-- #masthead -->
