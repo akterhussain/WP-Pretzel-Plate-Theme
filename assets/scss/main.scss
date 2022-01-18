@@ -1,0 +1,40 @@
+/*
+Theme Name: Pretzel Plate
+Theme URI: http://criqal.com/
+Author: Akter Hussain
+Author URI: http://akterhussain.com/
+Description: Pretzel Plate is a Custom WordPress theme developed by Akter Hussain
+Version: 2.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: pretzel-plate
+Tags: custom theme, wordpress theme, business theme, blog theme, woocommecrce theme, corporate theme
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+Pretzel Plate is based on  http://criqal.com/, (C) 2012-2022 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic
+	- Normalize
+	- Box sizing
+
+/*
+
+-----------------------------------------------------------------------------------*/
+@import 'variables';
+@import 'mixins';
+@import 'common';
+@import 'overlay';
+@import 'header';
+@import 'slider';
+
+

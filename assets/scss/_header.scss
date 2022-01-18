@@ -1,0 +1,168 @@
+/*
+* Top Header style
+*/
+.top-header{
+    background-color: $pcolor;
+    padding: 12px 0;
+    & .contact-phone{
+        & a{
+            color: $grey;
+            font-size: 14px;
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            &:hover{
+                color: $scolor;
+            }
+            & i{
+                padding-right: 5px;
+                width: 30px;
+                height: 30px;
+                background-color: $grey;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%; 
+                color: $pcolor;
+                padding: 9px 0px 0 7px;
+                margin-right: 7px;
+            }
+        }
+    }
+    & .top-menu{
+        margin-top: 4px;
+        & ul{
+            & li{
+                display: inline-block;
+                list-style: none;
+                border-right: 1px solid;
+                padding-left: 8px;
+                padding-right: 8px;
+                text-transform: uppercase;
+                & a{
+                    color: $grey;
+                    margin: -5px 0;
+                    display: block;
+                    font-size: 14px;
+                    transition: all 0.3s;
+                    -webkit-transition: all 0.3s;
+                    -moz-transition: all 0.3s;
+                    -ms-transition: all 0.3s;
+                    -o-transition: all 0.3s;
+                    &:hover{
+                        color: $scolor;
+                    }
+                }
+                &:last-child{
+                    border-right: none;
+                    padding-right: inherit;
+                }
+            }
+        }
+    }
+}
+
+/*
+* Main Header style
+*/
+.main-header{
+    padding: 20px 0;
+    background: $white;
+    box-shadow: 0 0 14px 2px #0000001c;
+
+    & .logo-area{
+        & a{
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            &:hover{
+                opacity: 0.8;
+            }
+            & img{
+                width: 200px;
+            }
+        }
+    }
+    & .main-menu{
+        position: relative;
+        padding-right: 30px;
+        float: none;
+        text-align: right;
+        & ul{
+            & li{
+                display: inline-block;
+                & a{
+                    display: inline-block;
+                    color: $pcolor;
+                    font-weight: 400;
+                    font-size: 18px;
+                    padding: 11px;
+                    transition: all 0.3s;
+                    -webkit-transition: all 0.3s;
+                    -moz-transition: all 0.3s;
+                    -ms-transition: all 0.3s;
+                    -o-transition: all 0.3s;
+                    &:hover{
+                        color: $scolor;
+                    }
+                }
+            }
+        }
+    }
+    & .woo-cat-icon{
+        position: absolute;
+        top: 0;
+        right: 15px;
+        & .cart-contents {
+            display: flex !important;
+            flex-flow: column nowrap;
+            justify-content: center;
+            & span.cart-contents-count {
+                position: absolute;
+                transform: translateY(-197%) translateX(25%);
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 22px;
+                height: 22px;
+                width: 22px;
+                vertical-align: middle;
+                text-align: center;
+                color: $white;
+                background: $scolor;
+                border-radius: 50%;
+                padding: 1px; 
+                transition: all 0.3s;
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s; 
+                &:hover{
+                    background: $s2color;
+                }
+            }
+        }
+        &::before{
+            font-family: 'Font Awesome 5 pro';
+            font-weight: 900;	
+            content: "\f290" !important;
+            font-size: 30px;
+            color: $pcolor;
+        }
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+.sticky {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+

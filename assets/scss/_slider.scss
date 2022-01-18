@@ -1,0 +1,118 @@
+.slider-area{
+    background-color: $pcolor;
+    & .slider-content{
+            & img{
+                margin:auto;
+                width:100%!important;
+                -webkit-transform-origin:100% 0;
+                -moz-transform-origin:100% 0;
+                -ms-transform-origin:100% 0;
+                -o-transform-origin:100% 0;
+                transform-origin:100% 0;
+                -webkit-animation:immortalkenburns 20000ms linear 0s infinite alternate;
+                animation:immortalkenburns 20000ms linear 0s infinite alternate;
+            }
+            & button.slider-btn{
+                border: none;
+                background: $pcolor;
+                color: $white;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                box-shadow: 0 0 14px 2px #0000001c;
+            }
+            & .prev-arrow{
+                position: absolute;
+                left: -15px;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+                z-index: 901;
+        }
+    }
+}
+
+@-webkit-keyframes immortalkenburns
+{
+    0%
+{
+    -webkit-transform:scale(1);
+    -webkit-transition:-webkit-transform 20000ms linear 0s
+}
+    100%
+{
+    -webkit-transform:scale(1.2);
+    -webkit-transition:-webkit-transform 20000ms linear 0s
+}
+
+}
+    @-moz-keyframes immortalkenburns
+{
+    0%
+{
+    -moz-transform:scale(1);
+    -moz-transition:-moz-transform 20000ms linear 0s
+}
+    100%
+{
+    -moz-transform:scale(1.2);
+    -moz-transition:-moz-transform 20000ms linear 0s
+}
+
+}
+    @-ms-keyframes immortalkenburns
+{
+    0%
+{
+    -ms-transform:scale(1);
+    -ms-transition:-ms-transform 20000ms linear 0s
+}
+    100%
+{
+    -ms-transform:scale(1.2);
+    -ms-transition:-ms-transform 20000ms linear 0s
+}
+
+}
+    @-o-keyframes immortalkenburns
+{
+    0%
+{
+    -o-transform:scale(1);
+    -o-transition:-o-transform 20000ms linear 0s
+}
+    100%
+{
+    -o-transform:scale(1.2);
+    -o-transition:-o-transform 20000ms linear 0s
+}
+
+}
+    @keyframes immortalkenburns
+{
+    0%
+{
+    transform:scale(1);
+    transition:transform 20000ms linear 0s
+}
+    100%
+{
+    transform:scale(1.2);
+    transition:transform 20000ms linear 0s
+}
+
+}
+
+
+
+button.slider-btn {
+    border: none;
+    background: #fff;
+    color: #000;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}

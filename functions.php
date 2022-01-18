@@ -49,7 +49,8 @@ function pretzel_plate_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'pretzel-plate' ),
+			'top_menu' => esc_html__( 'Top Menu', 'pretzel-plate' ),
+			'main_menu' => esc_html__( 'Main Menu', 'pretzel-plate' ),
 		)
 	);
 
@@ -82,9 +83,20 @@ function pretzel_plate_setup() {
 		)
 	);
 
+	/**
+	 * Add theme support for Woocommerce.
+	 */
+	add_theme_support('woocommerce');
+
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
+	/**
+	 * Slider Image size
+	 */
+	
+	add_image_size( 'slider-img', 1024, 680 );
+	
 	/**
 	 * Add support for core custom logo.
 	 *
@@ -99,6 +111,21 @@ function pretzel_plate_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	/**
+	 * Register Pretzel Slider for hero area
+	 */
+	register_post_type('pretzel_sliders',array(
+	
+		'labels'=>array(
+			'name'=>'Sliders',
+			'add_new_item'=>'Add New Slider'
+		),
+		'public'=>true,
+		'supports'=>array('title','editor','thumbnail'),
+		
+	));
+
 }
 add_action( 'after_setup_theme', 'pretzel_plate_setup' );
 
@@ -134,20 +161,40 @@ function pretzel_plate_widgets_init() {
 }
 add_action( 'widgets_init', 'pretzel_plate_widgets_init' );
 
+
 /**
  * Enqueue scripts and styles.
  */
 function pretzel_plate_scripts() {
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.5.3', 'all');
+	wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/assets/css/fontawesome-all.min.css', array(), '5.15.0', 'all');
+	wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/css/animate.min.css', array(), '5.15.0', 'all');
+	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array(), '5.15.0', 'all');
+	wp_enqueue_style( 'slick-theme', 'http://kenwheeler.github.io/slick/slick/slick-theme.css', array(), '5.15.0', 'all');
+	wp_enqueue_style( 'meanmenu', get_template_directory_uri() . '/assets/css/meanmenu.css', array(), '1.0.0', 'all');	
 	wp_enqueue_style( 'pretzel-plate-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'pretzel-plate-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'pretzel-plate-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	
+	wp_enqueue_script('bootstrap', get_template_directory_uri().'/assets/js/bootstrap.bundle.min.js',array('jquery'), '4.5.3', true);
+	wp_enqueue_script('meanmenu', get_template_directory_uri().'/assets/js/jquery.meanmenu.min.js', array('jquery'), '1.0.0', true);
+	wp_enqueue_script('plugins', get_template_directory_uri().'/assets/js/plugins.js', array('jquery'), '1.0.0', false);
+	wp_enqueue_script('slick', get_template_directory_uri().'/assets/js/slick.min.js', array('jquery'), '1.0.0', true);
+	wp_enqueue_script('main', get_template_directory_uri().'/assets/js/main.js', array('jquery'), '1.1.3', true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'pretzel_plate_scripts' );
+
+/**
+ * Implement the Custom Redux framework init.
+ */
+require get_template_directory() . '/inc/redux-framework/ReduxCore/framework.php';
+
+/**
+ * Implement the Custom Redux fremework config.
+ */
+require get_template_directory() . '/inc/redux-framework/sample/pretzel-config.php';
 
 /**
  * Implement the Custom Header feature.
@@ -181,4 +228,59 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
+}
+
+
+
+add_shortcode ('woo_cart_but', 'woo_cart_but' );
+/**
+ * Create Shortcode for WooCommerce Cart Menu Item
+ */
+function woo_cart_but() {
+	ob_start();
+ 
+        $cart_count = WC()->cart->cart_contents_count; // Set variable for cart item count
+        $cart_url = wc_get_cart_url();  // Set Cart URL
+  
+        ?>
+        <li><a class="menu-item cart-contents" href="<?php echo $cart_url; ?>" title="My Basket">
+	    <?php
+        if ( $cart_count > 0 ) {
+       ?>
+            <span class="cart-contents-count"><?php echo $cart_count; ?></span>
+        <?php
+        }
+        ?>
+        </a></li>
+        <?php
+	        
+    return ob_get_clean();
+ 
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'woo_cart_but_count' );
+/**
+ * Add AJAX Shortcode when cart contents update
+ */
+function woo_cart_but_count( $fragments ) {
+ 
+    ob_start();
+    
+    $cart_count = WC()->cart->cart_contents_count;
+    $cart_url = wc_get_cart_url();
+    
+    ?>
+    <a class="cart-contents menu-item" href="<?php echo $cart_url; ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+	<?php
+    if ( $cart_count > 0 ) {
+        ?>
+        <span class="cart-contents-count"><?php echo $cart_count; ?></span>
+        <?php            
+    }
+        ?></a>
+    <?php
+ 
+    $fragments['a.cart-contents'] = ob_get_clean();
+     
+    return $fragments;
 }
