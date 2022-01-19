@@ -34,6 +34,9 @@ $.scrollUp({
 		fade: true,
 		autoplay: false,
 		autoplaySpeed: 3000,
+		zIndex: 900,
+		dots: true,
+		dotsClass: 'slider-dots',
 		prevArrow: '<button class="slider-btn prev-arrow"><i class="fal fa-arrow-left"></i></button>',
 		nextArrow: '<button class="slider-btn next-arrow"><i class="fal fa-arrow-right"></i></button>',
 	});

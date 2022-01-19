@@ -1,6 +1,55 @@
+
 .slider-area{
     background-color: $pcolor;
-    & .slider-content{
+    & .pretzel-slider{
+        & button.slider-btn{
+            border: none;
+            background: $pcolor;
+            color: $white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 0 14px 2px #0000001c;
+        }
+        & .prev-arrow{
+            position: absolute;
+            left: 45%;
+            bottom: 60px;
+            z-index: 900;
+            -ms-transform: translateX(-45%);
+            transform: translateX(-45%);
+            -webkit-transform: translateX(-45%);
+            -moz-transform: translateX(-45%);
+            -o-transform: translateX(-45%);
+        }
+        & ul.slider-dots{
+            position: absolute;
+            bottom: 60px;
+            & li{
+                display: inline;
+                & button{
+                    border: none;
+                    background: $pcolor;
+                    color: $white;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    box-shadow: 0 0 14px 2px #0000001c;
+                }
+            }
+        }
+        & .next-arrow{
+            position: absolute;
+            left: 55%;
+            bottom: 60px;
+            z-index: 900;
+            -ms-transform: translateX(-55%);
+            transform: translateX(-55%);
+            -webkit-transform: translateX(-55%);
+            -moz-transform: translateX(-55%);
+            -o-transform: translateX(-55%);
+}
+        & .slider-content{
             & img{
                 margin:auto;
                 width:100%!important;
@@ -12,25 +61,6 @@
                 -webkit-animation:immortalkenburns 20000ms linear 0s infinite alternate;
                 animation:immortalkenburns 20000ms linear 0s infinite alternate;
             }
-            & button.slider-btn{
-                border: none;
-                background: $pcolor;
-                color: $white;
-                width: 35px;
-                height: 35px;
-                border-radius: 50%;
-                box-shadow: 0 0 14px 2px #0000001c;
-            }
-            & .prev-arrow{
-                position: absolute;
-                left: -15px;
-                top: 50%;
-                -ms-transform: translateY(-50%);
-                transform: translateY(-50%);
-                -webkit-transform: translateY(-50%);
-                -moz-transform: translateY(-50%);
-                -o-transform: translateY(-50%);
-                z-index: 901;
         }
     }
 }
@@ -104,15 +134,4 @@
     transition:transform 20000ms linear 0s
 }
 
-}
-
-
-
-button.slider-btn {
-    border: none;
-    background: #fff;
-    color: #000;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
 }
